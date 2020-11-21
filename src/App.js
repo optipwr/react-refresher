@@ -1,7 +1,27 @@
 import React from 'react';
+import './App.css';
+import GoalList from './components/GoalList/GoalList';
+import NewGoal from './components/NewGoal/NewGoal';
 
 const App = () => {
-  return <h1>A React App!</h1>;
+  const courseGoals = [
+    {id: 'cg1', text: 'Finish the Course'},
+    {id: 'cg2', text: 'Learn all about the course main topics'},
+    {id: 'cg3', text: 'Help other students in the course Q&A'},
+  ];
+
+  const addNewGoalHandler = (newGoal) => {
+    courseGoals.push(newGoal);
+    console.log('courseGoals update!', courseGoals);
+  };
+
+  return (
+    <div className="course-goals">
+      <h2>Course Goals</h2>
+      <NewGoal onAddGoal={addNewGoalHandler} />
+      <GoalList goals={courseGoals} />
+    </div>
+  );
 };
 
 export default App;
