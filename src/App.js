@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import GoalList from './components/GoalList/GoalList';
 import NewGoal from './components/NewGoal/NewGoal';
 
 const App = () => {
-  const courseGoals = [
+  const [courseGoals, setCourseGoals] = useState([
     {id: 'cg1', text: 'Finish the Course'},
     {id: 'cg2', text: 'Learn all about the course main topics'},
     {id: 'cg3', text: 'Help other students in the course Q&A'},
-  ];
+  ]);
 
   const addNewGoalHandler = (newGoal) => {
-    courseGoals.push(newGoal);
-    console.log('courseGoals update!', courseGoals);
+    // setCourseGoals(courseGoals.concat(newGoal)); basic approach
+    // This approach ensures state updates in order
+    setCourseGoals(prevCourseGoals => prevCourseGoals.concat(newGoal));
   };
 
   return (
